@@ -1,0 +1,41 @@
+<div class="container py-5" style="max-width: 400px;">
+  <h2 class="text-primary mb-4 text-center">Iniciar Sesión</h2>
+
+  <form (ngSubmit)="onLogin()">
+    <div class="mb-3">
+      <label class="form-label">Correo Electrónico</label>
+      <input
+        type="email"
+        class="form-control"
+        placeholder="FulanoDeTal@gmail.com"
+        [(ngModel)]="email"
+        name="email"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Shhh es un secreto"
+        [(ngModel)]="password"
+        name="password"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 mb-3" [disabled]="loading">
+      {{ loading ? 'Iniciando...' : 'Iniciar Sesión' }}
+    </button>
+
+    <div *ngIf="errorMsg" class="alert alert-danger p-2 text-center">
+      {{ errorMsg }}
+    </div>
+
+    <a class="text-center d-block link-primary" routerLink="/register">
+      ¿Aún no viajas con nosotros? ¡Regístrate aquí!
+    </a>
+  </form>
+</div>

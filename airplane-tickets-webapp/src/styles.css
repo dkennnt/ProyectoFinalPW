@@ -1,0 +1,141 @@
+[data-bs-theme="light"] {
+  /* === Icarus Flights Core Palette === */
+  --icarus-dark: #283044;                     /* Text / contrast */
+  --icarus-dark-rgb: 40, 48, 68;
+  --icarus-light: #FBFFFE;                    /* Background */
+  --icarus-light-rgb: 251, 255, 254;
+  --icarus-secondary: #004777;                /* Navbar / contrast accent */
+  --icarus-secondary-rgb: 0, 71, 119;
+
+  /* --- Orange Gradient Scale --- */
+  --icarus-tangelo: #FF4800;
+  --icarus-tangelo-rgb: 255, 72, 0;
+  --icarus-orange-pantone1: #FF5400;
+  --icarus-orange-pantone1-rgb: 255, 84, 0;
+  --icarus-orange-pantone2: #FF6000;
+  --icarus-orange-pantone2-rgb: 255, 96, 0;
+  --icarus-pumpkin: #FF6D00;
+  --icarus-pumpkin-rgb: 255, 109, 0;
+  --icarus-safety: #FF7900;
+  --icarus-safety-rgb: 255, 121, 0;
+  --icarus-ut: #FF8500;
+  --icarus-ut-rgb: 255, 133, 0;
+  --icarus-princeton: #FF9100;
+  --icarus-princeton-rgb: 255, 145, 0;
+  --icarus-orange-peel: #FF9E00;
+  --icarus-orange-peel-rgb: 255, 158, 0;
+  --icarus-orange-web: #FFAA00;
+  --icarus-orange-web-rgb: 255, 170, 0;
+  --icarus-selective: #FFB600;
+  --icarus-selective-rgb: 255, 182, 0;
+
+  /* --- Accents --- */
+  --icarus-yellow-accent: #F3E37C;
+  --icarus-yellow-accent-rgb: 243, 227, 124;
+  --icarus-lavender-accent: #E3DFFF;
+  --icarus-lavender-accent-rgb: 227, 223, 255;
+  --icarus-mint-accent: #55D6BE;
+  --icarus-mint-accent-rgb: 85, 214, 190;
+  --icarus-green-accent: #DDFFD9;
+  --icarus-green-accent-rgb: 221, 255, 217;
+
+  /* --- Seat States --- */
+  --icarus-seat-available: var(--icarus-green-accent);
+  --icarus-seat-claiming: var(--icarus-mint-accent);
+  --icarus-seat-occupied: var(--icarus-orange-pantone1);
+
+  /* === Bootstrap Overrides (with RGB) === */
+  --bs-primary: var(--icarus-pumpkin) ;
+  --bs-primary-rgb: var(--icarus-pumpkin-rgb) ;
+  --bs-secondary: var(--icarus-secondary) ;
+  --bs-secondary-rgb: var(--icarus-secondary-rgb) ;
+  --bs-dark: var(--icarus-dark) ;
+  --bs-dark-rgb: var(--icarus-dark-rgb) ;
+  --bs-light: var(--icarus-light) ;
+  --bs-light-rgb: var(--icarus-light-rgb) ;
+  --bs-success: var(--icarus-mint-accent) ;
+  --bs-success-rgb: var(--icarus-mint-accent-rgb) ;
+  --bs-info: var(--icarus-green-accent) ;
+  --bs-info-rgb: var(--icarus-green-accent-rgb) ;
+  --bs-danger: var(--icarus-orange-pantone1) ;
+  --bs-danger-rgb: var(--icarus-orange-pantone1-rgb) ;
+  --bs-warning: var(--icarus-orange-peel) ;
+  --bs-warning-rgb: var(--icarus-orange-peel-rgb) ;
+
+  --bs-body-bg: var(--icarus-light) ;
+  --bs-body-color: var(--icarus-dark) ;
+  --bs-link-color: var(--icarus-pumpkin) ;
+  --bs-link-hover-color: var(--icarus-ut) ;
+}
+
+/* === Buttons Override === */
+.btn-primary {
+  background-color: var(--bs-primary) ;
+  border-color: var(--bs-primary) ;
+  color: #fff ;
+}
+.btn-primary:hover {
+  background-color: var(--icarus-ut) ;
+  border-color: var(--icarus-ut) ;
+}
+.btn-primary:active {
+  background-color: var(--icarus-orange-pantone1) ;
+  border-color: var(--icarus-orange-pantone1) ;
+}
+
+.btn-secondary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--icarus-secondary);
+  --bs-btn-border-color: var(--icarus-secondary);
+
+  --bs-btn-hover-bg: color-mix(in srgb, var(--icarus-secondary) 88%, #fff);
+  --bs-btn-hover-border-color: var(--icarus-secondary);
+
+  --bs-btn-active-bg: color-mix(in srgb, var(--icarus-secondary) 80%, #000);
+  --bs-btn-active-border-color: var(--icarus-secondary);
+
+  --bs-btn-disabled-bg: color-mix(in srgb, var(--icarus-secondary) 50%, #fff);
+  --bs-btn-disabled-border-color: var(--icarus-secondary);
+}
+
+.btn-outline-secondary {
+  --bs-btn-color: var(--icarus-secondary);
+  --bs-btn-border-color: var(--icarus-secondary);
+
+  --bs-btn-hover-bg: var(--icarus-secondary);
+  --bs-btn-hover-border-color: var(--icarus-secondary);
+  --bs-btn-active-bg: var(--icarus-secondary);
+  --bs-btn-active-border-color: var(--icarus-secondary);
+
+  --bs-btn-disabled-color: var(--icarus-secondary);
+  --bs-btn-disabled-border-color: var(--icarus-secondary);
+}
+
+
+/* === Seat States === */
+.seat {
+  border: 2px solid var(--icarus-secondary);
+  border-radius: 6px;
+  padding: 0.6rem 0.9rem;
+  font-weight: 600;
+  min-width: 70px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.05s ease, filter 0.15s ease;
+}
+.seat-available {
+  background-color: var(--icarus-seat-available);
+  border-color: var(--icarus-secondary);
+  color: var(--icarus-dark);
+}
+.seat-claiming {
+  background-color: var(--icarus-seat-claiming);
+  border-color: var(--icarus-secondary);
+  color: var(--icarus-dark);
+}
+.seat-occupied {
+  background-color: var(--icarus-seat-occupied);
+  border-color: var(--icarus-secondary);
+  color: #fff;
+}
+.seat:hover { filter: brightness(0.96); }

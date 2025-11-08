@@ -1,0 +1,61 @@
+<div class="container py-5" style="max-width: 700px;">
+  <h2 class="text-success text-center mb-4">
+    ✈️ ¡Reserva confirmada!
+  </h2>
+
+  <!-- Tarjeta con resumen -->
+  <div *ngIf="resumen; else sinDatos" class="card shadow-sm border-success">
+    <div class="card-body">
+      <h5 class="card-title text-center text-primary mb-3">
+        Detalles de tu reserva
+      </h5>
+      <p class="mb-1"><strong>Reserva #:</strong> {{ resumen.reservationid }}</p>
+      <p class="mb-1">
+        <strong>Asiento:</strong> {{ resumen.seatnumber }}
+        <span class="text-muted">({{ resumen.classtype }})</span>
+      </p>
+      <p class="mb-1">
+        <strong>Pasajero:</strong>
+        {{ resumen.passenger.firstname }} {{ resumen.passenger.lastname }}
+      </p>
+      <p class="mb-1">
+        <strong>CUI:</strong> {{ resumen.passenger.cui }}
+      </p>
+      <p class="mb-1">
+        <strong>Equipaje:</strong>
+        {{ resumen.passenger.equipaje || 0 }}
+      </p>
+      <p class="mb-0">
+        <strong>Total:</strong> Q{{ resumen.price }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Si no hay datos -->
+  <ng-template #sinDatos>
+    <div class="alert alert-warning mt-3">
+      No se encontró el resumen de la reserva.
+    </div>
+  </ng-template>
+
+  <!-- Bloque si hay reservas pendientes -->
+  <div class="text-center mt-4" *ngIf="pendientes > 0; else fin">
+    <p class="text-muted mb-2">
+      Te quedan <strong>{{ pendientes }}</strong> reservas por completar.
+    </p>
+    <button class="btn btn-primary me-2" (click)="continuar()">Continuar</button>
+    <button class="btn btn-outline-secondary" (click)="terminarAqui()">
+      Terminar aquí
+    </button>
+  </div>
+
+  <!-- Bloque si ya no hay pendientes -->
+  <ng-template #fin>
+    <div class="text-center mt-4">
+      <p class="text-muted mb-2">No quedan reservas pendientes.</p>
+      <button class="btn btn-success" (click)="terminarAqui()">
+        Volver al inicio
+      </button>
+    </div>
+  </ng-template>
+</div>

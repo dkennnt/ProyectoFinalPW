@@ -1,0 +1,8 @@
+h2, h5 {
+  font-weight: 600;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+  text-align: center;
+}

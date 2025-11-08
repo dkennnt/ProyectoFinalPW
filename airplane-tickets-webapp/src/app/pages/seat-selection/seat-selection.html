@@ -1,0 +1,33 @@
+<div class="container py-5 text-center">
+  <h2 class="text-primary mb-4">Select Your Seats</h2>
+  <p class="mb-3 text-muted">Choose how many seats you want in each class.</p>
+
+  <table class="table table-borderless w-75 mx-auto align-middle">
+    <thead class="border-bottom">
+      <tr>
+        <th class="text-start">Class</th>
+        <th class="text-center">Seats</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let option of seatOptions">
+        <td class="fw-semibold text-start">{{ option.label }}</td>
+        <td class="text-center">
+          <button class="btn btn-outline-secondary btn-sm me-2"
+                  (click)="decrement(option)">−</button>
+          <span class="fw-bold">{{ option.count }}</span>
+          <button class="btn btn-outline-secondary btn-sm ms-2"
+                  (click)="increment(option)">+</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert-light mt-4">
+    <strong>Total Seats:</strong> {{ totalSeats }}
+  </div>
+
+  <button class="btn btn-primary px-5 mt-3"
+          [disabled]="totalSeats === 0"
+          (click)="goToSeatDiagram()">Continue</button>
+</div>

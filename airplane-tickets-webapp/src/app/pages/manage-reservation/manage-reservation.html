@@ -1,0 +1,60 @@
+<div class="container py-5" style="max-width: 600px;">
+  <h2 class="text-center mb-4 text-primary">Modificar o Cancelar Reserva</h2>
+
+  <!-- Formulario de búsqueda -->
+  <form (ngSubmit)="searchReservation()" class="card p-4 shadow-sm">
+    <div class="mb-3">
+      <label class="form-label fw-bold">Número de reserva</label>
+      <input type="number" [(ngModel)]="reservationId" name="reservationId" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label fw-bold">CUI o Nombre del pasajero</label>
+      <input type="text" [(ngModel)]="cui" name="cui" placeholder="CUI o nombre" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100" [disabled]="loading">
+      {{ loading ? 'Buscando...' : 'Buscar Reserva' }}
+    </button>
+  </form>
+
+  <!-- Mensaje general -->
+  <div *ngIf="message" class="alert alert-warning mt-3 text-center">{{ message }}</div>
+
+  <!-- Resultado de búsqueda -->
+  <div *ngIf="foundReservation" class="card mt-4 shadow-sm p-3">
+    <h5 class="text-center text-success mb-3">Reserva encontrada ✅</h5>
+
+    <p><strong>Reserva #:</strong> {{ foundReservation.reservationid }}</p>
+    <p><strong>Pasajero:</strong> {{ foundReservation.firstname }} {{ foundReservation.lastname }}</p>
+    <p><strong>Asiento:</strong> {{ foundReservation.seatnumber }} ({{ foundReservation.classtype }})</p>
+
+    <p>
+      <strong>Estado:</strong>
+      <span [ngClass]="{
+        'text-success': foundReservation.status === 'active',
+        'text-warning': foundReservation.status === 'modified',
+        'text-danger': foundReservation.status === 'cancelled'
+      }">
+        {{ foundReservation.status | titlecase }}
+      </span>
+    </p>
+
+    <p><strong>Total:</strong> Q{{ foundReservation.totalprice }}</p>
+
+    <!-- Si la reserva está cancelada, mostramos mensaje -->
+    <div *ngIf="foundReservation.status === 'cancelled'; else acciones">
+      <div class="alert alert-warning mt-3 text-center">
+        ⚠️ Esta reserva fue cancelada y no puede modificarse.
+      </div>
+    </div>
+
+    <!-- Acciones solo si no está cancelada -->
+    <ng-template #acciones>
+      <div class="text-center mt-3">
+        <button class="btn btn-outline-primary me-2" (click)="goToChangeSeat()">Modificar Asiento</button>
+        <button class="btn btn-outline-danger" (click)="cancelReservation()">Cancelar</button>
+      </div>
+    </ng-template>
+  </div>
+</div>

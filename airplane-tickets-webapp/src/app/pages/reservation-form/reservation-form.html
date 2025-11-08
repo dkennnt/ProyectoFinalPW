@@ -1,0 +1,35 @@
+<div class="container py-5" style="max-width: 600px;">
+  <h2 class="text-primary mb-4 text-center">Información del Pasajero</h2>
+
+  <div *ngIf="selectedSeat" class="alert alert-info text-center fw-bold">
+    Asiento seleccionado:
+    <span class="text-primary">{{ selectedSeat.seatnumber }}</span>
+    <small class="text-muted">({{ selectedSeat.classtype }})</small>
+  </div>
+
+  <form (ngSubmit)="confirmarReserva()">
+    <div class="mb-3">
+      <label class="form-label">CUI</label>
+      <input type="text" class="form-control" [(ngModel)]="pasajero.cui" name="cui" required />
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" [(ngModel)]="pasajero.nombre" name="nombre" required />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Apellido</label>
+        <input type="text" class="form-control" [(ngModel)]="pasajero.apellido" name="apellido" required />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Cantidad de equipaje</label>
+      <input type="number" class="form-control" [(ngModel)]="pasajero.equipaje" name="equipaje" min="0" max="3" required />
+      <small class="text-muted">(Máximo 3, si no lleva déjelo en 0)</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Confirmar</button>
+  </form>
+</div>

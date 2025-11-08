@@ -1,0 +1,95 @@
+<div class="container py-5 text-center">
+  <h2 class="mb-4 fw-bold" style="color: var(--icarus-pumpkin);">
+    Selecciona tu asiento
+  </h2>
+
+  <!-- ========== CLASE DE NEGOCIOS ========== -->
+  <h5 class="text-secondary mb-3">Clase de Negocios</h5>
+  <div class="plane business ma-3">
+    <div class="business-row" *ngFor="let r of BUSINESS_ROWS">
+      <div class="seat-box"
+           *ngFor="let c of BUSINESS_COLS"
+           [class.seat-empty]="!seatBy(r,c)">
+        <div *ngIf="seatBy(r,c) as seat"
+             class="seat"
+             [ngClass]="{
+               'seat-available': isAvailable(r,c),
+               'seat-occupied':  isOccupied(r,c),
+               'seat-claiming':  isSelected(r,c)
+             }"
+             (click)="toggleSeat(r,c)">
+          {{ seat.seatnumber }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="legend mb-4">
+    <span class="legend-item seat-available">Disponible</span>
+    <span class="legend-item seat-occupied">Ocupado</span>
+    <span class="legend-item seat-claiming">Seleccionado</span>
+  </div>
+
+  <hr class="divider my-5" />
+
+  <!-- ========== CLASE ECONÓMICA ========== -->
+  <h5 class="text-secondary mb-3">Clase Económica</h5>
+
+  <div class="plane economy mx-auto">
+    <div class="economy-row" *ngFor="let r of ECONOMY_ROWS">
+
+      <!-- Bloque izquierdo (3-4) -->
+      <div class="seat-group">
+        <div class="seat-box"
+             *ngFor="let c of ECONOMY_LEFT"
+             [class.seat-empty]="!seatBy(r,c)">
+          <div *ngIf="seatBy(r,c) as seat"
+               class="seat"
+               [ngClass]="{
+                 'seat-available': isAvailable(r,c),
+                 'seat-occupied':  isOccupied(r,c),
+                 'seat-claiming':  isSelected(r,c)
+               }"
+               (click)="toggleSeat(r,c)">
+            {{ seat.seatnumber }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Pasillo -->
+      <div class="aisle"></div>
+
+      <!-- Bloque derecho (5-6-7) -->
+      <div class="seat-group">
+        <div class="seat-box"
+             *ngFor="let c of ECONOMY_RIGHT"
+             [class.seat-empty]="!seatBy(r,c)">
+          <div *ngIf="seatBy(r,c) as seat"
+               class="seat"
+               [ngClass]="{
+                 'seat-available': isAvailable(r,c),
+                 'seat-occupied':  isOccupied(r,c),
+                 'seat-claiming':  isSelected(r,c)
+               }"
+               (click)="toggleSeat(r,c)">
+            {{ seat.seatnumber }}
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="legend mb-4">
+      <span class="legend-item seat-available">Disponible</span>
+      <span class="legend-item seat-occupied">Ocupado</span>
+      <span class="legend-item seat-claiming">Seleccionado</span>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <button class="btn btn-primary px-5"
+            [disabled]="!selectedSeat"
+            (click)="continue()">
+      Continuar
+    </button>
+  </div>
+</div>

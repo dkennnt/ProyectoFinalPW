@@ -1,0 +1,48 @@
+<div class="container py-5">
+  <h2 class="text-center mb-4 text-primary">Panel de Reportes</h2>
+
+  <!-- ===== 1. Exportar XML ===== -->
+  <section class="card p-4 mb-4 shadow-sm">
+    <h5 class="text-secondary mb-3">Exportar Reservas a XML</h5>
+    <button class="btn btn-primary" (click)="downloadXML()">📦 Descargar XML</button>
+  </section>
+
+  <!-- ===== 2. Cargar XML ===== -->
+  <section class="card p-4 mb-4 shadow-sm">
+    <h5 class="text-secondary mb-3">Cargar Reservas desde XML Externo</h5>
+    <input type="file" class="form-control mb-3" (change)="onFileSelected($event)" accept=".xml">
+    <div *ngIf="uploadStats" class="alert alert-info mt-3">
+      ✅ Cargados: {{ uploadStats.inserted }} |
+      ❌ Errores: {{ uploadStats.errors }} |
+      ⏱ {{ uploadStats.time }} ms
+    </div>
+  </section>
+
+  <!-- ===== 3. Reportes SQL ===== -->
+  <section class="card p-4 shadow-sm">
+    <h5 class="text-secondary mb-3">Consultas del Sistema</h5>
+    <button class="btn btn-outline-primary mb-3" (click)="loadSummary()">🔄 Actualizar Reportes</button>
+
+    <div *ngIf="summary">
+      <table class="table table-bordered">
+        <thead>
+          <tr><th>Reporte</th><th>Resultado</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Usuarios creados</td><td>{{ summary.total_users }}</td></tr>
+          <tr><td>Reservas por usuario (promedio)</td><td>{{ summary.avg_reservations_per_user }}</td></tr>
+          <tr><td>Asientos Negocios Ocupados</td><td>{{ summary.business_occupied }}</td></tr>
+          <tr><td>Asientos Económicos Ocupados</td><td>{{ summary.economy_occupied }}</td></tr>
+          <tr><td>Asientos Negocios Libres</td><td>{{ summary.business_free }}</td></tr>
+          <tr><td>Asientos Económicos Libres</td><td>{{ summary.economy_free }}</td></tr>
+          <tr><td>Asientos Modificados</td><td>{{ summary.modified }}</td></tr>
+          <tr><td>Asientos Cancelados</td><td>{{ summary.cancelled }}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div *ngIf="message" class="alert alert-warning mt-3 text-center">
+    {{ message }}
+  </div>
+</div>

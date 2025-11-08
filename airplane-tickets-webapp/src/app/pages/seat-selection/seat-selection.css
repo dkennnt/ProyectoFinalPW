@@ -1,0 +1,36 @@
+h2 {
+  font-weight: 700;
+}
+
+.table th {
+  color: var(--icarus-secondary);
+}
+
+button.btn-outline-secondary {
+  border-color: var(--icarus-secondary);
+  color: var(--icarus-secondary);
+}
+
+button.btn-outline-secondary:hover {
+  background-color: var(--icarus-secondary);
+  color: #fff;
+}
+
+.alert {
+  background-color: var(--icarus-green-accent);
+  color: var(--icarus-dark);
+  border: none;
+  font-size: 1.1rem;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.btn-primary {
+  background-color: var(--icarus-pumpkin);
+  border: none;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: var(--icarus-orange-peel);
+}

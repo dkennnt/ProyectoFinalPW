@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg px-3"
+     style="background: linear-gradient(90deg, var(--icarus-tangelo), var(--icarus-pumpkin), var(--icarus-orange-peel));">
+  <div class="container-fluid">
+
+    <a class="navbar-brand fw-bold text-light" routerLink="/">Icarus Flights</a>
+
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item mx-3">
+          <a class="nav-link text-light fw-semibold" routerLink="/seat-selection">RESERVAR</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link text-light fw-semibold" routerLink="/manage-reservation">MODIFICAR / CANCELAR</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link text-light fw-semibold" routerLink="/reports/summary">REPORTES</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <ng-container *ngIf="authService.isAuthenticated(); else guest">
+        <span class="text-light fw-semibold me-3">
+          👋 Hola, {{ authService.getUser()?.name }}
+          <span *ngIf="authService.isVIP()" class="badge bg-warning text-dark ms-2">VIP</span>
+        </span>
+        <button class="btn btn-secondary btn-sm" (click)="authService.logout()">Salir</button>
+      </ng-container>
+
+      <ng-template #guest>
+        <a routerLink="/login" class="btn btn-outline-light btn-sm me-2">Login</a>
+        <a routerLink="/register" class="btn btn-light btn-sm text-secondary fw-semibold">Sign Up</a>
+      </ng-template>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
